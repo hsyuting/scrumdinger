@@ -21,26 +21,7 @@ struct MeetingView: View {
             VStack {
                 MeetingHeaderView(secondsElapsed: scrumTimer.secondsElapsed,
                                   secondsRemaining: scrumTimer.secondsRemaining, theme: scrum.theme)
-                ProgressView(value:5, total: 15)
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Seconds Elapsed")
-                            .font(.caption)
-                        Label("300", systemImage: "hourglass.tophalf.fill")
-                    }
-                    Spacer()
-                    VStack(alignment: .trailing) {
-                        Text("Seconds Remaining")
-                        Label("600", systemImage: "hourglass.bottomhalf.fill")
-                            .font(.caption)
-
-                    }
-                }
-                .accessibilityElement(children:.ignore)
-                .accessibilityLabel("Time Remaining")
-                .accessibilityValue("10 minutes")
-                Circle()
-                    .strokeBorder(lineWidth: 24)
+                MeetingTimerView(speakers: scrum.attendees.speakers, theme: scrum.theme)
                 MeetingFooterView(speakers: scrumTimer.speakers, skipAction: scrumTimer.skipSpeaker)
             }
         }
